@@ -107,8 +107,7 @@ export const postMessage = (body) => async (dispatch) => {
     }
 
     sendMessage(data, body);
-    dispatch(fetchConversations()); // after new message has been sent, retrieve messages again
-
+    
   } catch (error) {
     console.error(error);
   }
