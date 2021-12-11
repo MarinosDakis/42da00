@@ -2,7 +2,6 @@ import React from "react";
 import { Box } from "@material-ui/core";
 import { SenderBubble, OtherUserBubble } from "../ActiveChat";
 import moment from "moment";
-import { connect } from "react-redux";
 
 const Messages = (props) => {
   const { messages, otherUser, userId } = props;
@@ -22,11 +21,4 @@ const Messages = (props) => {
   );
 };
 
-// update UI after new message had been sent
-const mapStateToProps = (state) => {
-  return {
-    state: state,
-  };
-};
-
-export default connect(mapStateToProps, null)(Messages);
+export default Messages;

@@ -97,7 +97,6 @@ export const postMessage = (body) => async (dispatch) => {
 
   try {
 
-    // have to wait for response to finish
     const data = await saveMessage(body);
 
     if (!body.conversationId) {
