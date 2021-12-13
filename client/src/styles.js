@@ -67,4 +67,9 @@ export default makeStyles((theme) => ({
     loginHeader: {
         marginRight: 160,
     },
+    [theme.breakpoints.down("sm")]: {
+        bubble: {
+            margin: "10vh 0 10vh 0",
+        },
+    }
 }));
