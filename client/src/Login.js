@@ -10,10 +10,13 @@ import {
   TextField,
 } from "@material-ui/core";
 import { login } from "./store/utils/thunkCreators";
+import LeftBox from "./components/LeftBox";
+import useStyles from '../src/styles';
 
 const Login = (props) => {
   const history = useHistory();
   const { user, login } = props;
+  const classes = useStyles();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -28,41 +31,57 @@ const Login = (props) => {
   }
 
   return (
-    <Grid container justify="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to register?</Typography>
-          <Button onClick={() => history.push("/register")}>Register</Button>
-        </Grid>
+    <Grid className={classes.view} container justifyContent="center">
+      <Box className={classes.root}>
         <form onSubmit={handleLogin}>
-          <Grid>
-            <Grid>
-              <FormControl margin="normal" required>
-                <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
-                />
-              </FormControl>
-            </Grid>
-            <FormControl margin="normal" required>
-              <TextField
-                label="password"
-                aria-label="password"
-                type="password"
-                name="password"
-              />
-            </FormControl>
-            <Grid>
-              <Button type="submit" variant="contained" size="large">
-                Login
-              </Button>
+          <Grid className={classes.root} container justifyContent="center">
+            <LeftBox />
+            <Grid item xs={12} md={8} lg={8}>
+              <Grid container item>
+                <Grid container>
+                  <Grid item xs={6} md={6} lg={6}>
+                    <Typography className={classes.header}>Don't have an account?</Typography>
+                  </Grid>
+                  <Grid item xs={6} md={6} lg={6}>
+                    <Button className={`${classes.header} ${classes.button}`} onClick={() => history.push("/register")}>Register</Button>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <div className={classes.details}>
+                <Grid>
+                  <Typography className={classes.loginHeader} variant="h4"><strong>Welcome Back!</strong></Typography>
+                </Grid>
+                <Grid>
+                  <FormControl margin="normal" required>
+                    <TextField
+                      aria-label="username"
+                      label="Username"
+                      name="username"
+                      type="text"
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid>
+                  <FormControl margin="normal" required>
+                    <TextField
+                      label="password"
+                      aria-label="password"
+                      type="password"
+                      name="password"
+                    />
+                  </FormControl>
+                </Grid>
+                <div className={classes.justify}>
+                  <Button className={classes.button} type="submit" variant="contained" size="large">
+                    Login
+                  </Button>
+                </div>
+              </div>
             </Grid>
           </Grid>
         </form>
       </Box>
-    </Grid>
+    </Grid >
   );
 };
 
