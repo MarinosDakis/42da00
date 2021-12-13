@@ -64,10 +64,13 @@ const Login = (props) => {
                 <Grid>
                   <FormControl margin="normal" required>
                     <TextField
-                      label="password"
+                      label="Password"
                       aria-label="password"
                       type="password"
                       name="password"
+                      InputProps={{
+                        endAdornment: <Button className={`${classes.button}`} onClick={() => history.push("/forgot")}>Forgot?</Button>
+                      }}
                     />
                   </FormControl>
                 </Grid>

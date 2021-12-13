@@ -53,6 +53,9 @@ export default makeStyles((theme) => ({
         '& .MuiInputBase-input': {
             width: "400px",
         },
+        '& .MuiFormControl-root': {
+            width: "400px",
+        },
     },
     justify: {
         justifyContent: "center",
