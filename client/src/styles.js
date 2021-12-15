@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const mainColor = "#2596be";
+const mainColor = "#3A8DFF";
 
 export default makeStyles((theme) => ({
     root: {
@@ -15,11 +15,12 @@ export default makeStyles((theme) => ({
         "&.MuiButton-contained": {
             color: "white",
             backgroundColor: mainColor,
-            width: 120,
+            width: 160,
+            height: 56,
         },
     },
     bgImage: {
-        backgroundImage: `linear-gradient(0deg, rgb(40 40 40 / 30%), rgb(84 184 255 / 90%)), url(assets/bg-img.png)`,
+        backgroundImage: "linear-gradient(180deg, rgb(58 141 255 / 85%), rgb(134 185 255 / 100%)), url(assets/bg-img.png)",
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
     },
@@ -51,10 +52,10 @@ export default makeStyles((theme) => ({
             margin: "20px 0 20px 0",
         },
         '& .MuiInputBase-input': {
-            width: "400px",
+            width: 400,
         },
         '& .MuiFormControl-root': {
-            width: "400px",
+            width: 380,
         },
     },
     justify: {
@@ -62,14 +63,14 @@ export default makeStyles((theme) => ({
         display: "flex",
     },
     createHeader: {
-        marginRight: 100,
+        marginRight: 90,
     },
     loginHeader: {
-        marginRight: 160,
+        marginRight: 150,
     },
     [theme.breakpoints.down("sm")]: {
-        bubble: {
-            margin: "10vh 0 10vh 0",
+        bgImage: {
+            display: "none",
         },
     }
 }));

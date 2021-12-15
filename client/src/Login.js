@@ -43,11 +43,11 @@ const Login = (props) => {
                     <Typography className={classes.header}>Don't have an account?</Typography>
                   </Grid>
                   <Grid item xs={6} md={6} lg={6}>
-                    <Button className={`${classes.header} ${classes.button}`} onClick={() => history.push("/register")}>Register</Button>
+                    <Button className={`${classes.header} ${classes.button}`} onClick={() => history.push("/register")}>Create Account</Button>
                   </Grid>
                 </Grid>
               </Grid>
-              <div className={classes.details}>
+              <Box className={classes.details}>
                 <Grid>
                   <Typography className={classes.loginHeader} variant="h4"><strong>Welcome Back!</strong></Typography>
                 </Grid>
@@ -74,12 +74,12 @@ const Login = (props) => {
                     />
                   </FormControl>
                 </Grid>
-                <div className={classes.justify}>
+                <Box className={classes.justify}>
                   <Button className={classes.button} type="submit" variant="contained" size="large">
                     Login
                   </Button>
-                </div>
-              </div>
+                </Box>
+              </Box>
             </Grid>
           </Grid>
         </form>

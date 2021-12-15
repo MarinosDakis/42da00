@@ -7,7 +7,6 @@ export default function LeftBox() {
     const classes = useStyles();
 
     return (
-        <>
             <Grid item xs={12} md={4} lg={4} className={classes.bgImage}>
                 <Grid container className={classes.bubble} spacing={1}>
                     <Grid item xs={12}>
@@ -21,6 +20,5 @@ export default function LeftBox() {
                     </Grid>
                 </Grid>
             </Grid>
-        </>
     )
 }

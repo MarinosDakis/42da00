@@ -56,7 +56,7 @@ const Login = (props) => {
                   </Grid>
                 </Grid>
               </Grid>
-              <div className={classes.details}>
+              <Box className={classes.details}>
                 <Grid>
                   <Typography className={classes.createHeader} variant="h4"><strong>Create an account.</strong></Typography>
                 </Grid>
@@ -112,12 +112,12 @@ const Login = (props) => {
                     </FormHelperText>
                   </FormControl>
                 </Grid>
-                <div className={classes.justify}>
+                <Box className={classes.justify}>
                   <Button className={classes.button} type="submit" variant="contained" size="large">
                     Create
                   </Button>
-                </div>
-              </div>
+                </Box>
+              </Box>
             </Grid>
           </Grid>
         </form>
