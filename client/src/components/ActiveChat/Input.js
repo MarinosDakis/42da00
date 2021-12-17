@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { FormControl, FilledInput } from "@material-ui/core";
+import { FormControl, FilledInput, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { postMessage } from "../../store/utils/thunkCreators";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import { IconButton } from "@mui/material";
-//import {Image} from 'cloudinary-react';
 import axios from "axios";
 
 const useStyles = makeStyles(() => ({
@@ -18,13 +17,19 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#F4F6FA",
     borderRadius: 8,
     marginBottom: 20
+  },
+  imgList: {
+    display: "flex",
+    justifyContent: "center",
+    backgroundColor: "#ededed",
+    borderRadius: 15,
   }
 }));
 
 const Input = (props) => {
   const classes = useStyles();
   const [text, setText] = useState("");
-  //const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
   const { postMessage, otherUser, conversationId, user } = props;
 
   const handleChange = (event) => {
@@ -39,9 +44,10 @@ const Input = (props) => {
       recipientId: otherUser.id,
       conversationId,
       sender: conversationId ? null : user,
-      attachments: "test",
+      attachments: uploadedFiles,
     };
     await postMessage(reqBody);
+    setUploadedFiles([]);
     setText("");
   };
 
@@ -64,16 +70,14 @@ const Input = (props) => {
         },
       };
 
-      let res = await axios.post(url, formData, config)
+      await axios.post(url, formData, config)
 
         .then((response) => {
-          console.log(response.data.secure_url);
+          setUploadedFiles(oldArray => [...oldArray, response.data.secure_url]);
           return response;
         })
 
         .catch((error) => console.log(error));
-
-      return res;
 
     });
 
@@ -82,6 +86,7 @@ const Input = (props) => {
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
       <FormControl fullWidth hiddenLabel>
+      <Typography className={classes.imgList}>{uploadedFiles.length > 0 ? `${uploadedFiles.length} ${uploadedFiles.length === 1 ? "Image" : "Images"} Attached` : ""}</Typography>
         <FilledInput
           classes={{ root: classes.input }}
           disableUnderline
@@ -90,16 +95,15 @@ const Input = (props) => {
           name="text"
           onChange={handleChange}
           endAdornment={
-            <label htmlFor="icon-button-file">
-              <input accept="image/*" id="icon-button-file" multiple type="file" onChange={onFileChange} style={{ display: "none" }} />
-              <IconButton color="primary" aria-label="upload picture" component="span">
-                <FileUploadIcon />
-              </IconButton>
-            </label>
+              <label htmlFor="icon-button-file">
+                <input accept="image/*" id="icon-button-file" multiple type="file" onChange={onFileChange} style={{ display: "none" }} />
+                <IconButton color="primary" aria-label="upload picture" component="span">
+                  <FileUploadIcon />
+                </IconButton>
+              </label>
           }
         />
       </FormControl>
-
     </form>
   );
 };
