@@ -46,16 +46,12 @@ const Login = (props) => {
           <Grid className={classes.root} container justifyContent="center">
             <LeftBox />
             <Grid item xs={12} md={8} lg={8}>
-              <Grid container item>
-                <Grid container>
-                  <Grid item xs={6} md={6} lg={6}>
-                    <Typography className={classes.header}>Already have an account?</Typography>
-                  </Grid>
-                  <Grid item xs={6} md={6} lg={6}>
-                    <Button className={`${classes.header} ${classes.button}`} onClick={() => history.push("/login")}>Login</Button>
-                  </Grid>
-                </Grid>
-              </Grid>
+            <Box>
+                <Typography className={classes.headerText}>Already have an account?</Typography>
+              </Box>
+              <Box className={classes.header}>
+                <Button className={classes.button} onClick={() => history.push("/login")}>Login</Button>
+              </Box>
               <Box className={classes.details}>
                 <Grid>
                   <Typography className={classes.createHeader} variant="h4"><strong>Create an account.</strong></Typography>

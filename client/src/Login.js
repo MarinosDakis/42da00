@@ -37,16 +37,12 @@ const Login = (props) => {
           <Grid className={classes.root} container justifyContent="center">
             <LeftBox />
             <Grid item xs={12} md={8} lg={8}>
-              <Grid container item>
-                <Grid container>
-                  <Grid item xs={6} md={6} lg={6}>
-                    <Typography className={classes.header}>Don't have an account?</Typography>
-                  </Grid>
-                  <Grid item xs={6} md={6} lg={6}>
-                    <Button className={`${classes.header} ${classes.button}`} onClick={() => history.push("/register")}>Create Account</Button>
-                  </Grid>
-                </Grid>
-              </Grid>
+              <Box>
+                <Typography className={classes.headerText}>Don't have an account?</Typography>
+              </Box>
+              <Box className={classes.header}>
+                <Button className={classes.button} onClick={() => history.push("/register")}>Create Account</Button>
+              </Box>
               <Box className={classes.details}>
                 <Grid>
                   <Typography className={classes.loginHeader} variant="h4"><strong>Welcome Back!</strong></Typography>
@@ -69,7 +65,7 @@ const Login = (props) => {
                       type="password"
                       name="password"
                       InputProps={{
-                        endAdornment: <Button className={`${classes.button}`} onClick={() => history.push("/forgot")}>Forgot?</Button>
+                        endAdornment: <Button className={classes.forgot} onClick={() => history.push("/forgot")}>Forgot?</Button>
                       }}
                     />
                   </FormControl>

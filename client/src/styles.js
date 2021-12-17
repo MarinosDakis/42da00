@@ -11,12 +11,21 @@ export default makeStyles((theme) => ({
     button: {
         "&.MuiButton-text": {
             color: mainColor,
+            width: 160,
+            height: 56,
+            borderRadius: 5,
+            boxShadow: "0px 2px 12px rgba(74, 106, 149, 0.2)",
         },
         "&.MuiButton-contained": {
             color: "white",
             backgroundColor: mainColor,
             width: 160,
             height: 56,
+        },
+    },
+    forgot: {
+        "&.MuiButton-text": {
+            color: mainColor,
         },
     },
     bgImage: {
@@ -38,12 +47,17 @@ export default makeStyles((theme) => ({
         marginBottom: 30,
     },
     header: {
-        width: "100%",
         display: "flex",
-        justifyContent: "center",
-        color: "#bbbbbb",
-        margin: "3vh",
+        justifyContent: "end",
+        margin: "-30px 30px 0px 0",
     },
+    headerText: {
+        marginTop: "3vh",
+        color: "#B0B0B0",
+        fontSize: 14,
+        textAlign: "center",
+    },
+
     details: {
         margin: "10vh 0 20vh 0",
         '& .MuiGrid-root': {
