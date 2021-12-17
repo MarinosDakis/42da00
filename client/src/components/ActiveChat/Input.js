@@ -47,31 +47,27 @@ const Input = (props) => {
 
   const onFileChange = async (e) => {
 
-    const url = `https://api.cloudinary.com/v1_1/marinosdakis/upload`;
-    const selectedFiles = [e.target.files];
+    const url = `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/upload`;
+    const selectedFiles = [...e.target.files];
 
-    selectedFiles.map(async (image, index) => {
+    selectedFiles.map(async (item) => {
 
       const formData = new FormData();
-      formData.append("file", image[index]);
-      formData.append("upload-preset", "pg7tb2kh");
+      formData.append("file", item);
+      formData.append("upload_preset", `${process.env.REACT_APP_UPLOAD_PRESET}`);
 
-      const Axios = axios.create({
+      const config = {
+        headers: { "X-Requested-With": "XMLHttpRequest" },
         transformRequest: (data, headers) => {
           delete headers["x-access-token"];
           return data;
-        }
-    });
+        },
+      };
 
-    const config = {
-      headers: { "X-Requested-With": "XMLHttpRequest" },
-    };
-
-      let res = await Axios.post(url, formData, config)
+      let res = await axios.post(url, formData, config)
 
         .then((response) => {
-          console.log("yess");
-          console.log(response);
+          console.log(response.data.secure_url);
           return response;
         })
 
