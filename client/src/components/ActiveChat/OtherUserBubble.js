@@ -44,9 +44,9 @@ const OtherUserBubble = (props) => {
           {otherUser.username} {time}
         </Typography>
         <ImageDisplay images={images} position="left" />
-        <Box className={classes.bubble}>
-          <Typography className={classes.text}>{text}</Typography>
-        </Box>
+        {text !== "" ? <Box className={classes.bubble}>
+        <Typography className={classes.text}>{text}</Typography>
+      </Box> : null}
       </Box>
     </Box>
   );

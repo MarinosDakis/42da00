@@ -35,9 +35,9 @@ const SenderBubble = (props) => {
     <Box className={classes.root}>
       <Typography className={classes.date}>{time}</Typography>
       <ImageDisplay images={images} position="right" />
-      <Box className={classes.bubble}>
+      {text !== "" ? <Box className={classes.bubble}>
         <Typography className={classes.text}>{text}</Typography>
-      </Box>
+      </Box> : null}
     </Box>
   );
 };

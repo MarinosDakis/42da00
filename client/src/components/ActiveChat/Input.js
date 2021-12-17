@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { FormControl, FilledInput, Typography } from "@material-ui/core";
+import { FormControl, FilledInput, Typography, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { postMessage } from "../../store/utils/thunkCreators";
-import FileUploadIcon from '@mui/icons-material/FileUpload';
+import ImageIcon from '@mui/icons-material/Image';
+import ClearIcon from '@mui/icons-material/Clear';
 import { IconButton } from "@mui/material";
 import axios from "axios";
 
@@ -51,6 +52,8 @@ const Input = (props) => {
     setText("");
   };
 
+  const clearImages = () => { setUploadedFiles([]); }
+
   const onFileChange = async (e) => {
 
     const url = `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/upload`;
@@ -86,7 +89,7 @@ const Input = (props) => {
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
       <FormControl fullWidth hiddenLabel>
-      <Typography className={classes.imgList}>{uploadedFiles.length > 0 ? `${uploadedFiles.length} ${uploadedFiles.length === 1 ? "Image" : "Images"} Attached` : ""}</Typography>
+        <Typography className={classes.imgList}>{uploadedFiles.length > 0 ? `${uploadedFiles.length} ${uploadedFiles.length === 1 ? "Image" : "Images"} Attached` : ""}</Typography>
         <FilledInput
           classes={{ root: classes.input }}
           disableUnderline
@@ -95,12 +98,19 @@ const Input = (props) => {
           name="text"
           onChange={handleChange}
           endAdornment={
+            <Grid container justifyContent="flex-end">
               <label htmlFor="icon-button-file">
                 <input accept="image/*" id="icon-button-file" multiple type="file" onChange={onFileChange} style={{ display: "none" }} />
-                <IconButton color="primary" aria-label="upload picture" component="span">
-                  <FileUploadIcon />
+                <IconButton color="primary" aria-label="upload pictures" component="span">
+                  <ImageIcon />
                 </IconButton>
               </label>
+              <label htmlFor="icon-button-delete">
+                <IconButton color="primary" aria-label="delete pictures" component="span" onClick={clearImages}>
+                  <ClearIcon />
+                </IconButton>
+              </label>
+            </Grid>
           }
         />
       </FormControl>
