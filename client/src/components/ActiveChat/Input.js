@@ -59,30 +59,30 @@ const Input = (props) => {
     const url = `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/upload`;
     const selectedFiles = [...e.target.files];
 
-    selectedFiles.map(async (item) => {
+    const config = {
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+      transformRequest: (data, headers) => {
+        delete headers["x-access-token"];
+        return data;
+      },
+    }
 
-      const formData = new FormData();
-      formData.append("file", item);
-      formData.append("upload_preset", `${process.env.REACT_APP_UPLOAD_PRESET}`);
+    Promise.all(
 
-      const config = {
-        headers: { "X-Requested-With": "XMLHttpRequest" },
-        transformRequest: (data, headers) => {
-          delete headers["x-access-token"];
-          return data;
-        },
-      };
+      selectedFiles.map(async (item) => {
 
-      await axios.post(url, formData, config)
+        const formData = new FormData();
+        formData.append("file", item);
+        formData.append("upload_preset", `${process.env.REACT_APP_UPLOAD_PRESET}`);
 
-        .then((response) => {
+        try {
+          const response = await axios.post(url, formData, config);
           setUploadedFiles(oldArray => [...oldArray, response.data.secure_url]);
-          return response;
-        })
+        } catch (error) { console.error(error); }
 
-        .catch((error) => console.log(error));
+      })
 
-    });
+    );
 
   }
 
