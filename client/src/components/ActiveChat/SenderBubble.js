@@ -21,7 +21,7 @@ const SenderBubble = (props) => {
   const { time, text, images } = props;
 
   return (
-    <Box className={`${images && images.length > 2 ? classes.reverse : classes.root} `}>
+    <Box className={`${images && images.length > 1 ? classes.reverse : classes.root} `}>
       <ChatBubbleInfo text={text} time={time} images={images} />
     </Box>
   );

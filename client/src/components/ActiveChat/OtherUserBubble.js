@@ -24,7 +24,7 @@ const OtherUserBubble = (props) => {
   const { text, time, otherUser, images } = props;
 
   return (
-    <Box className={`${images && images.length > 2 ? classes.reverse : classes.root} `}>
+    <Box className={`${images && images.length > 1 ? classes.reverse : classes.root} `}>
       <Avatar alt={otherUser.username} src={otherUser.photoUrl} className={classes.avatar}></Avatar>
       <Box>
         <ChatBubbleInfo text={text} time={time} otherUser={otherUser} images={images} />
