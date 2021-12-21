@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box, Typography } from "@material-ui/core";
+import { Box } from "@material-ui/core";
+import ChatBubbleInfo from "./ChatBubbleInfo";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -8,34 +9,20 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     alignItems: "flex-end"
   },
-  date: {
-    fontSize: 11,
-    color: "#BECCE2",
-    fontWeight: "bold",
-    marginBottom: 5
+  reverse: {
+    flexDirection: "column-reverse",
+    display: "flex",
+    alignItems: "flex-end"
   },
-  text: {
-    fontSize: 14,
-    color: "#91A3C0",
-    letterSpacing: -0.2,
-    padding: 8,
-    fontWeight: "bold"
-  },
-  bubble: {
-    background: "#F4F6FA",
-    borderRadius: "10px 10px 0 10px"
-  }
 }));
 
 const SenderBubble = (props) => {
   const classes = useStyles();
-  const { time, text } = props;
+  const { time, text, images } = props;
+
   return (
-    <Box className={classes.root}>
-      <Typography className={classes.date}>{time}</Typography>
-      <Box className={classes.bubble}>
-        <Typography className={classes.text}>{text}</Typography>
-      </Box>
+    <Box className={`${images && images.length > 1 ? classes.reverse : classes.root} `}>
+      <ChatBubbleInfo text={text} time={time} images={images} />
     </Box>
   );
 };
