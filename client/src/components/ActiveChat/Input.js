@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { FormControl, FilledInput, Typography, Grid } from "@material-ui/core";
+import { FormControl, FilledInput, Grid } from "@material-ui/core";
+import Typography from '@mui/material/Typography';
 import { makeStyles } from "@material-ui/core/styles";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { connect } from "react-redux";
 import { postMessage } from "../../store/utils/thunkCreators";
 import ImageIcon from '@mui/icons-material/Image';
@@ -19,13 +21,22 @@ const useStyles = makeStyles(() => ({
     borderRadius: 8,
     marginBottom: 20
   },
-  imgList: {
+  info: {
     display: "flex",
     justifyContent: "center",
-    backgroundColor: "#ededed",
     borderRadius: 15,
+    backgroundColor: "#ededed",
   }
 }));
+
+const displayTheme = createTheme({
+  typography: {
+    subtitle1: {
+      fontSize: 16,
+      fontWeight: 700,
+    },
+  },
+});
 
 const Input = (props) => {
   const classes = useStyles();
@@ -89,7 +100,9 @@ const Input = (props) => {
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
       <FormControl fullWidth hiddenLabel>
-        <Typography className={classes.imgList}>{uploadedFiles.length > 0 ? `${uploadedFiles.length} ${uploadedFiles.length === 1 ? "Image" : "Images"} Attached` : ""}</Typography>
+        <ThemeProvider theme={displayTheme}>
+          <Typography variant="subtitle1" className={classes.info}>{uploadedFiles.length > 0 ? `${uploadedFiles.length} ${uploadedFiles.length === 1 ? "Image" : "Images"} Attached` : ""}</Typography>
+        </ThemeProvider>
         <FilledInput
           classes={{ root: classes.input }}
           disableUnderline
